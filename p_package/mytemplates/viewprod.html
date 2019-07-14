@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-hover" method =  'POST'enctype = "multipart/form-data">
+    <tr>
+            <th>S/N</th>
+            <th>Product brand</th>
+            <th>Product model</th>
+            <th>Product year</th>
+            <th>Product condition</th>
+            <th>Product fuel type</th>
+            <th>Product price</th>
+            <th>Product color</th>
+            <th>Action</th>
+            
+            
+    </tr>
+    {% for i in vehicles: %}
+    <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{i.seller_fname}}</td>
+            <td>{{i.seller_lname}}</td>
+            <td>{{i.product_brand}}</td>
+            <td>{{i.product_condition}}</td>
+            <td>{{i.product_fuel_type}}</td>
+            <td>{{i.product_price}}</td>
+            <td>{{i.product_color}}</td>
+            <td><a href="{{ url_for('delcar')}}"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+   
+    {% endfor %}
+
+</table>
+{% endblock %}

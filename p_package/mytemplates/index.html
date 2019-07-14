@@ -1,0 +1,289 @@
+{% extends 'base.html'%}
+{% block title %} home {% endblock %}
+
+{% block content %}  
+
+<style>
+		#bgpic{
+			background-color:#A2B5CD;
+			background-size:cover;
+			background-repeat:no-repeat;
+			background-position:center;
+		}
+</style>
+<div class="container" style="border:1px solid;">
+		<form action="" id="">
+			<div class="row">
+					
+							<div class="col-md-6">
+									<input type="text" id="search" class="form-control">	
+							</div>
+							<div class="col-md-6">
+									<button class="btn btn-primary" >Search</button>
+							</div>
+					
+			</div>
+	</form>
+	
+	
+		
+			<!-- <form action="{#{{ url_for('jsonsub') }}#}" id="myform">
+				<div class="col-md-6" style="border:1px solid red;">
+					
+						
+				</div>						
+				
+				<div class="col-md-6">
+						
+				</div>
+
+			</form> -->
+		
+	</div>
+		
+		
+		<p></p>
+	</div>
+</div>
+
+
+<div class="container-fluid" method =  'POST'enctype = "multipart/form-data" id="bgpic" >
+	<div class="row">
+		{% for i in cars: %}
+			
+					<div class="col-md-4">
+						
+						<img src= "{{url_for('download_file' , filename=i.product_image)}}" width="500" class="img-fluid">
+						<p><strong> Brand: {{ i.product_brand }}</strong></p>
+						<p><strong>Price: {{i.product_price }}</strong></p>
+						<button class="btn btn-success btn-sm"> <td><a href="{{url_for('details',productid=i.product_id)}}">View details</a></td> </button> 
+					</div>			
+			
+			{% endfor %}
+		</div>
+	
+</div>
+	
+	
+	
+	
+
+		<!--background image and text-->
+	 <!-- <div class="container-fluid" style="margin: 0px;padding: 0px;">
+						 <div class="row no-gutters" >
+						<div class="col-md-12 " >
+		    			<div id="carouselExampleControls" class="carousel slide " data-ride="carousel"  data-interval="4000">
+							  <div class="carousel-inner">
+							    <div class="carousel-item active" id="bg-image1" >
+							      	<h3 class="animated bounceIn" >--GET YOUR DREAM CAR AT AN AFFORDABLE PRICE<br>Fresh Style,High Performance..<br><button type="button" class="btn btn-dark animated pulse infinite"><a href="products.html"><strong>TEST DRIVE TODAY</strong></a></strong> 	</button></h3>
+							      	
+							      
+							    </div>
+							    <div class="carousel-item" id="bg-image2">
+							      	<h3 class="animated bounceIn">--LOOKING FOR THE BEST???<br>We got you covered!..<br><button type="button" class="btn btn-dark animated pulse infinite" ><strong>TEST DRIVE TODAY</strong></button></h3>
+							    </div>
+							    <div class="carousel-item" id="bg-image3">
+							      <h3 class="animated bounceIn"  style="text-align: left;padding: 10px">--GET YOUR DREAM CAR <br>MERCEDES BENZ<br> @$1000<br>monthly<br><button type="button" class="btn btn-dark animated pulse infinite" ><strong>BUY NOW</strong> </button></h3></b></h3>
+							    </div>
+							  </div>
+						</div>
+			</div> 
+	</div>  -->
+
+				 <div class="row">
+					<div class="col-md-12" id="quick">
+							<p id="search" class="animated shake">Quick vehicle search </p>
+					</div>
+				</div>
+
+				
+					<!--Send us a message form-->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4">
+								
+								<form action="" id="formh" style="box-sizing: border-box; border-radius: 10px;" >
+									<div class="form-group"  style="padding: 5px;box-sizing: border-box;" >
+										<button id="hideform" type="button" style="float: right;z-index: 20">x</button><br>
+											<div id="result"></div>
+												
+												<label>Email</label>
+												<input type="text" name="email" class="form-control" >
+												<label>Phone number</label>
+												<input type="tel" name="phone" class="form-control" >
+												<label>Message</label><br>
+												<textarea cols="1" rows="1" name="message" placeholder="Enter your message" class="form-control"> </textarea>
+												
+												<button style="margin: 10px; border-radius: 10px;" type="Submit">Submit</button>
+											</div>	
+							</form>
+							</div>
+						</div>
+						<button  id="showform"  type="button" class="btn btn-primary"> Send us a message now</button>
+					</div>
+				
+			
+				
+				
+	
+				<!-- <div class="row" id="choice" >
+							<div class="col-md-2 ">
+									<select class="custom-select">
+										  <option selected>Brands</option>
+										  <option value="1">Toyota</option>
+										  <option value="2">Mercedes</option>
+										  <option value="3">Volvo</option>
+										  <option value="4">Audi</option>
+										  <option value="5">Bentley</option>
+									</select>
+							</div>
+							<div class="col-md-2">
+									<select class="custom-select">
+										  <option selected>Model</option>
+										  <option value="1">Camry</option>
+										  <option value="2">Corrola</option>
+										  <option value="3">Highlander</option>
+										  <option value="4">SUV</option>
+										  <option value="5">Venza</option>
+									</select>
+							</div>
+							<div class="col-md-2">
+									<select class="custom-select">
+										  <option selected>Year</option>
+										  <option value="1">2015</option>
+										  <option value="2">2016</option>
+										  <option value="3">2017</option>
+										  <option value="2">2018</option>
+										  <option value="3">2019</option>
+									</select>
+							</div>
+							<div class="col-md-2">
+									<select class="custom-select">
+										  <option selected>Condition</option>
+										  <option value="1">New</option>
+										  <option value="2">Tokumbo</option>
+										  <option value="3">London used</option>
+									</select>
+							</div>
+							<div class="col-md-2">
+									<button type="button"  class="btn btn-primary animated pulse infinite" ><a href="{{ url_for('products') }}">Submit</a></button>
+							</div>
+				</div> -->
+
+
+
+
+				<div class="row" id="advantages0">
+							<div class="col-md-12" id="advantages" >
+								<h1>Our Advantages</h1>
+							</div>
+							<div class="col-md-3"  >
+								<i class="fas fa-car icon"></i>
+								<h4 >Largest dealership</h4>
+								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div >
+							<div class="col-md-3">
+								<i class="fas fa-money-bill-alt icon" ></i>
+								<h4>Lower car prices</h4>
+								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+							<div class="col-md-3">
+								<i class="fas fa-cog icon"></i>
+								<h4>Multipoint safety</h4>
+								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+				</div>
+
+
+
+
+
+
+				<div class="row" id="services" >
+							<div class="col-md-12">
+								<h2>Vehicle Services</h2>
+								<p>-BEST FOR YOUR CAR</p>
+							</div>
+							<div class="col-md-3" id="auto" >
+								<p class="pa"><i class="fas fa-tools icon2" ></i>Auto repairing</p>
+								<p class="pa"><i class="fas fa-user-cog icon2" ></i>Transmission checkup</p>
+								<p class="pa"><i class="fas fa-cogs icon2"></i>Vehicle Inspection</p>
+							</div>
+							<div class="col-md-3">
+								<h4>Auto Repairing</h4>
+								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								qucepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+							<div class="col-md-3" id="services0" >
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+								<p><i class="fas fa-check-square icon3" ></i>Lorem ipsum doloest laborum.</p>
+							</div>
+				</div>
+				<!-- <div class="wrapper" style="background-color: yellow;"> -->
+							<div class="row" style="display: flex; background-color: #F8F8FF">
+									<div class="col-md-12">
+										<h4>Customer Reviews</h4>
+									</div>
+							</div>
+							<div class="row">
+									<div class="col-md-12" >
+										<img src="{{ url_for('static',filename='image/quote.png')}}" width="100" alt="quote image" style="display: block;margin: auto;">
+									</div>
+							</div>
+							<div class="row" style="display: flex; ">
+									<div class="col-md-12">
+										<p class="para">Lorem ipsum rure dolor in reprehenderit <br>in voluptate velit esse
+										cillum dolore eu fugiat nulla pariatur.<br> Excepteur sint occaecat cupidatat non
+										proident,<br> sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+											<strong>Shopeyin </strong> <br> <strong>Vehicle buyer</strong> 
+										</p>
+
+									</div>
+							</div>
+				
+
+
+			{% endblock%}
+
+			{% block scriptsss%}
+			{{ super() }}
+			<script type="text/javascript">
+				$(document).ready(function(){
+					
+					
+
+					});
+ 
+			
+			
+					
+			</script>
+			{% endblock %} 			
+<!-- 
+			$.ajax({
+				type:'POST',
+				dataType: 'json',
+				url:"{{ url_for('jsonsub')}}",
+				data: "data="+mydata,
+				success:function(msg){
+				   console.log(msg) 
+				},
+  
+				error:function(er){
+					  console.log(er)
+				  } -->

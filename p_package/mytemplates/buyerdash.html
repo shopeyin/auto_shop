@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}buyerdash{% endblock %}
+
+{% block content %} 
+		<style type="text/css">
+	
+
+		.clearfloat{
+			clear: both;
+		}
+		body{
+			background-color:white;
+		}
+
+		.btnwidth{
+			width: 100%
+		}
+
+		.align{
+			text-align: left;
+			margin: 5px;
+		}
+		.align i{
+			padding-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid" >
+		<div class="row" style="font-size: 20px;padding-top: 30px;">
+				<div class="col-md-3" style="padding-top:10px;min-height: 460px;">
+						<div class="row">
+							<h5 style="margin-top: 0px;font-size: 30px;"><i class="far fa-user"></i>My Account</h5>
+						</div>
+						<div class="row">
+							
+							<button class="btn btn-light btn-block align"><i class="far fa-hdd"></i>Orders</button> 
+						</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="far fa-comments"></i>Reviews</button> 
+							
+						</div>
+						<div class="row">
+							<h5 style="margin-top: 0px;font-size: 30px;">Personal details</h5>
+						</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="fas fa-unlock"></i>Change Password</button> 
+						</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="far fa-address-book"></i>Address book</button> 
+						</div>
+						<div class="row" style="margin-top: 50px">
+							<button type="button" class="btn btn-outline-info" >LOGOUT</button>
+							 {#<a class="nav-link" href="{{ url_for('logout')}}">Logout</a> #}
+						</div>
+				</div>
+				<div class="col-md-9"  >
+						<div class="row">
+							<div class="col-md-12">
+								<h2>Account Overview</h2>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-secondary btnwidth">Account details</button>
+								<h5 style="width: 80%;float: left;padding-top: 20px;">Personal details </h5>
+								<button type="button" id="ad_btn" style="float: right;margin-top: 10px;"><i class="fas fa-pen"></i></button>
+								<div class="clearfloat"></div>
+								<div id="dash">
+									
+									<p>{{ session['buyer']}}</p>
+									<p>user234@gmail.com</p>
+									<button type="button"  class="btn btn-info">CHANGE PASSWORD</button>
+								</div>
+								<div  id="dashform"  style="display: none;" style="border: 1px solid;" >
+									<form  >
+										<label>First name</label>
+										<input type="text" name="" class="form-control">
+										<label>last name</label>
+										<input type="text" name="" class="form-control">
+										<label>Email</label>
+										<input type="email" name="" class="form-control">
+										<label>Newpassword</label>
+										<input type="password" name="" class="form-control">
+										<button type="button" class="btn btn-warning btn-block" id="btn_save">save changes</button>
+									</form>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+									<button class="btn btn-secondary btnwidth">Address book</button>
+									<h5 style="width: 80%;float: left;padding-top: 20px;">Address book</h5>
+									<button type="button" id="ad_btn2" style="float: right;margin-top: 10px;"><i class="fas fa-pen"></i></button>
+									<div class="clearfloat"></div>
+									<div id="dash2">
+										<h6>Your shipping address:</h6>
+										<p>Lorem ipiat nulla pariatur. Excepteur sint occaecat cupidatat non
+										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+									</div>
+									<div  id="dashform2" style="display: none;">
+										<form>
+												<label>Edit Address</label>
+												<textarea class="form-control"></textarea>
+												<label>Phone Number</label>
+												<input type="tel" name="" class="form-control">
+												
+												<button id="btn_save2" style="margin-top: 10px;" type="button" class="btn btn-warning btn-block">save changes</button>
+										</form>
+											
+									</div>	
+							</div>
+				</div>
+			</div>		
+
+	</div>	
+
+	{% endblock %}
+		

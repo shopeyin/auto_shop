@@ -1,0 +1,60 @@
+ {% extends 'base.html'%}
+
+ {% block content %}
+
+ <style>
+    .container{
+		min-height: 500px;
+		background-image: url({{ url_for('static',filename='image/car3.jpg') }});
+		background-size:cover;
+		background-repeat:no-repeat;
+		background-position:center;
+    }
+</style>
+<div class="container" >
+    <div class="row rowlog">
+        <div class="col-md-4">
+                <form action="{{ url_for('login') }}" method="POST" id="signIn2">
+                    <div class="form-group" style="background-color: rgba(0,0,0, 0.6);color: white;padding: 10px;border-radius: 10px;">
+                        <div id="res"></div>
+
+                        {% with message = get_flashed_messages() %}
+                            {% if message: %}
+                                {% for j in message: %}
+                                    <div class="alert alert-danger">{{ j }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+
+                        {% if formd.email.errors %}
+                                <div style="color:red">
+                                    {{ formd.email.errors[0] }}
+                                </div>
+                        {% endif %}
+
+
+                        {{ formd.email.label}}
+                        {{ formd.email(class_='form-control')}}
+                        
+
+                        {{ formd.password.label}}
+                        {{ formd.password(class_='form-control')}}
+
+                        {{ formd.csrf_token }}
+                        {{formd.submit(class_='btn-outline-warning',style='margin-top:10px')}} 
+                        
+                       
+                        <form action="{{ url_for('formsub') }}">
+                            <p>Not a Vendor? <button type="button" id="y" class="btn btn-info"><a href="{{ url_for('formsub') }}">Sign Up</a></button></p>
+                           
+                        </form>
+                        
+                        <button class="btn btn-primary btn-lg" style="width: 100%"><img src="{{ url_for('static',filename='image/fa.png')}}" width="25" style="float: left;padding-top: 2px" >Sign in with facebook</button> 	
+                    </div>
+                    
+                </form>
+        </div>
+    </div>
+
+ {% endblock %}

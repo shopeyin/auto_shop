@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}seller dash{% endblock %}
+
+{% block content %} 
+
+		<style type="text/css">
+
+		
+		.clearfloat{
+			clear: both;
+		}
+		body{
+			background-color: lightgrey;
+		}
+
+		
+
+		
+	</style>
+</head>
+<body id="body">
+	
+	<div class="container-fluid">
+		<div class="row" style="font-size: 20px;padding-top: 0px; ">
+				<div class="col-md-2" style="padding-top:10px; min-height: 500px;">
+						<div class="row">
+							<button id="sell_home" class="btn btn-secondary btn-block align"> <span style="font-size: 25px;"><i class="fas fa-home"></i>My Auto</span>
+							</button>
+						</div>
+						<div> Welcome {{ session['seller']}}</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="fas fa-envelope-open"></i>My Notifications</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-box"></i>My Car</button>
+							<div class="dropdown-menu  " style="width: 100%">
+									<button class="dropdown-item" type="button" id="show_prod">Add Car</button>
+									<button class="dropdown-item" type="button" id="view_prod">
+										<a href="{{ url_for('viewproduct',sellerid=seller_id)}}">View cars</a></button>
+									
+							</div>
+						</div>
+						
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="fas fa-shopping-basket"></i>My Sales</button> 
+						</div>
+						<div class="row">
+							<button class="btn btn-light btn-block align"><i class="fas fa-unlock"></i><a href="">Change Password</a></button>
+						</div>
+						<!-- <div class="row">
+							<button class="btn btn-light btn-block align"><i class="fas fa-unlock"></i><a href="{#{{ url_for('delete')}#}">delete</a></button>
+						</div> -->
+						
+						<div class="row">
+							<button id="bot" type="button" style="margin: 6px; float: left;">switch</button>
+						</div>
+						<div class="clearfloat"></div>
+						<!-- <div class="row">
+							<button   type="button" class="btn btn-outline-dark" style="margin-top:  40px;"> LOGOUT</button>
+						</div>
+						 -->
+				</div>
+			
+				<div class="col-md-10" style="background-color: #A2B5CD" >
+						<div class="row" id="venform" style="padding: 20px;display: flex; min-height: 460px; ">
+							<div class="col-md-12"  >
+								<button    type="button" id="sel" class="btn btn-secondary  btnwidth"> My account settings</button>
+								<form action="{{ url_for('update') }}" method="POST"  style="margin-top: 20px;">
+
+									<div class="col-md-6">
+										{{ form.changevendor.label }} 					 
+										{{ form.changevendor(class_='form-control' , placeholder='Enter a new name') }}		
+									</div>
+									<div class="col-md-6">
+										{{ form.password.label }} 
+										{{ form.password(class_='form-control',placeholder='Enter a new password') }}	
+									</div>
+									<div class="col-md-6">
+										{{ form.address.label }} 
+										{{ form.address(class_='form-control',placeholder='Enter an address') }}	
+									</div>
+									<div class="col-md-6">
+										{{ form.phonenumber.label }} 
+										{{ form.phonenumber(class_='form-control',placeholder='Enter a phonenumber') }}	
+									</div>
+
+
+									<div class="col-md-12" style="padding-top:10px;">
+										{{ form.csrf_token}}
+										{{ form.submit()}}
+									</div>
+									
+								</form>
+							</div>
+							
+							<!-- <div class="col-md-6">
+								<button   id="ad_book" type="button" class="btn btn-secondary   btnwidth"> Address book</button>
+								<h5 style="width: 80%;float: left;padding-top: 20px;">ADDRESS BOOK </h5><button type="button" id="ad_btn" style="float: right;margin-top: 10px;"><i class="fas fa-pen"></i></button>
+								
+								<div class="clearfloat"></div>
+								<div id="ship">
+									<h6>Your  address:</h6>
+									<p>Lorem ipiat nullia deserunt mollit anim id est laborum.</p>
+								</div>
+								
+							
+							</div> -->
+						</div>
+						<div class="container-fluid" style="display: none" id="ad_product">
+									<h4 style="text-align: left;">Add Car</h4>
+								<form action="{{ url_for('upload') }}" method="POST" enctype = "multipart/form-data">
+									<div class="row" >
+										<div class="col-md-6">
+												{{ pform.productbrand.label }}
+												{{ pform.productbrand(class_='form-control', placeholder='e.g Toyota') }}
+										</div>
+										<div class="col-md-6">
+											{{ pform.productmodel.label }}
+											{{ pform.productmodel(class_='form-control', placeholder='e.g Corrola') }}
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+												{{ pform.productyear.label }}
+												{{ pform.productyear(class_='form-control', placeholder='e.g 2017') }}
+
+										</div>
+										<div class="col-md-6">
+												{{ pform.productcondition.label }}
+												{{ pform.productcondition(class_='form-control', placeholder='e.g Toyota') }}
+										</div>	
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+												{{ pform.productfuel.label }}
+												{{ pform.productfuel(class_='form-control', placeholder='e.g Toyota') }}
+										</div>
+										<div class="col-md-6">
+												{{ pform.productprice.label }}
+												{{ pform.productprice(class_='form-control', placeholder='e.g Toyota') }}
+										</div>
+									</div>
+									<div class="row">
+											<div class="col-md-6">
+													{{ pform.productcolor.label }}
+													{{ pform.productcolor(class_='form-control', placeholder='e.g Toyota') }}	
+											</div>
+											<div class="col-md-6" style="padding-top:40px">
+													<!-- {{ pform.passport.errors }} -->
+													{{ pform.passport}}	
+											</div>
+									</div>
+									 <div class="row">
+										<div class="col-md-6" style="padding-top:30px">
+												{{ pform.csrf_token }}
+												{{ pform.submit()}}
+										</div>
+									</div>
+									
+								</form>
+									
+									
+						</div>
+						
+
+
+				</div>
+		</div>
+	{% endblock %}

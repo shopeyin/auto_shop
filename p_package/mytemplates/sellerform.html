@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}sellerform{% endblock %}
+{% block content %}
+
+<style>
+    .container{
+		min-height: 500px;
+		background-image: url({{ url_for('static',filename='image/car3.jpg') }});
+		background-size:cover;
+		background-repeat:no-repeat;
+		background-position:center;
+    }
+</style>
+<div class="container" >
+
+    <div class="row rowsign">
+                <div class="col-md-4" >
+                    <form action="{{url_for('formsub')}}" method="POST" id="myform" style="font-size: 15px;">
+
+                        <div class="form-group"  style="border: 1px solid;background-color: rgba(0,0,0, 0.6);color: white;border-radius: 10px;padding: 10px">
+                            <div id="feedBack"></div>
+                                 
+                                    {% if messages: %}
+                                        {% for i in messages: %}
+                                            <div class="alert alert-danger">{{ i }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                {% if forms.email.errors %}
+                                <div style="color:red">
+                                    {{ forms.email.errors[0] }}
+                                </div>
+                                {% endif %}
+
+                                {{ forms.firstname.label }}
+                                {{ forms.firstname(class_='form-control', id='first') }}
+                                
+                                {{ forms.lastname.label }}
+                                {{ forms.lastname(class_='form-control' ,id='last') }}
+
+                                
+                                {{ forms.email.label }}
+                                {{ forms.email(class_='form-control', id='emai') }}
+                                
+                                {{ forms.address.label }}
+                                {{ forms.address(class_='form-control', id='add') }}
+
+
+                                {{ forms.phonenumber.label }}
+                                {{ forms.phonenumber(class_='form-control', id='phone') }}
+
+
+
+                                {{ forms.password.label }}
+                                {{ forms.password(class_='form-control', id='pass') }}
+
+                                {% if forms.password.errors %}
+                                <div style="color:red">
+                                    {{ forms.password.errors[0] }}
+                                </div>
+                                {% endif %}
+                                
+                                {{ forms.confirmpassword.label }}
+                                {{ forms.confirmpassword(class_='form-control',)}}
+
+                                
+                                {{ forms.checkbox(id='check') }}Do you agree to  our <a href="#" style="color: white;" data-toggle="modal" data-target="#our">terms and condition</a>
+                                
+                                {{ forms.csrf_token }}
+                                {{forms.submit() }} 
+                                
+                                <form action="{{ url_for('login') }}">
+                                <p>Not a Vendor? <button type="button"  class="btn btn-info"><a href="{{ url_for('login') }}">Sign In</a></button></p>
+                               
+                        </form>
+                        </div>	
+                    </form>
+                    
+                </div>
+        </div>
+
+          {% endblock %} 
+
+
+          {% block scriptss %}
+            {{ super() }}
+            <script type="text/javascript">
+            $(document).ready(function(){
+              mydata =  $('#emai').val()
+              $('#but').click(function(){
+               mydata  = $('#myform').serialize()
+               $.ajax({
+                     type:'POST',
+                    dataType:'text',
+                     url:"{{ url_for('jsonsub')}}",
+                    data:mydata,
+                    success:function(msg){
+                     console.log(msg)   
+                    },
+                    error:function(er){
+                        console.log(er)
+                    }
+               })
+              })
+            })
+            
+            
+            
+            </script>
+          {% endblock %}

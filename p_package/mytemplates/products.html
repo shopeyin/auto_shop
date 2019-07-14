@@ -1,0 +1,111 @@
+{% extends 'base.html'%}
+{% block title %} products {% endblock %}
+
+{% block content %}   
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fontawesome/css/all.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/mystyle.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/animate.css')}}">
+	<title>login</title>
+	<style type="text/css">
+		@font-face{
+			font-family: fonty;
+			src:url('fonts/lora/lora-bold.ttf');
+		}
+		.container{
+		min-height: 500px;
+		
+		}
+
+		a{
+			color: black
+		}
+
+		body{
+			background-color: white!important;
+		}
+
+		p{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		#sell a{
+			color: black;
+		}
+	</style>
+</head>
+<body>
+
+	
+	<div class="container" id="sell">
+		<div class="row "  >
+				<div class="col-md-4" >
+					<img src="{{ url_for('static',filename='images/moto3.jpg')}}" class="img-fluid">
+					<p>Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="{{ url_for('buyerform') }}">Buy now</a> </button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto2.jpg')}}" class="img-fluid">
+					<p>Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="url_for('buyform')">Buy now</a></button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto3.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="formvalid.html">Buy now</a></button> 
+				</div>
+		</div>	
+		<div class="row" >
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto4.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="formvalid.html">Buy now</a></button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto5.jpg')}}" class="img-fluid">
+					<p>Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="formvalid.html">Buy now</a></button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto8.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm"><a href="formvalid.html">Buy now</a></button> 
+				</div>
+		</div>	
+		<div class="row" >
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto7.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm">Buy now</button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto8.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm">Buy now</button> 
+				</div>
+				<div class="col-md-4">
+					<img src="{{ url_for('static',filename='images/moto7.jpg')}}" class="img-fluid">
+					<p >Price:$2000</p>
+					<p>Seller:Xconcepts limited</p>
+					<button class="btn btn-success btn-sm">Buy now</button> 
+				</div>
+		</div>	
+	</div>
+
+
+	{% endblock %} 
+	

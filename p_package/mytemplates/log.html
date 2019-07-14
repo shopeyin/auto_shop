@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('formsubmit')}}" method="POST">
+        <div class="form-group">
+                {{ formdata.email.label }}
+                {{ formdata.email }}
+                {% if formdata.email.errors%}
+                 <span style="color:red">{{ formdata.email.errors[0] }}</span>
+                 {% endif %}
+        </div>
+        <div class="form-group">
+            {{ formdata.password.label }}
+            {{ formdata.password }} 
+        </div>
+        {{ formdata.csrf_token }}
+        {{formdata.submit()}}
+    </form>
+</body>
+</html>

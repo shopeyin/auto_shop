@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fontawesome/css/all.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/mystyle.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/animate.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/lora/lora-bold.ttf')}}">
+		
+	<title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+	<div class="container-fluid" id="nav_bar" style="margin:0px;padding:0px;" >
+				<div class="row_header">
+						<div class="col-md-12">
+					<nav class="navbar navbar-expand-lg navbar-light  ">
+						  <a class="navbar-brand" href="index.html" id="aut" class="animated shake">AUTOSHOP</a>
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+						  <div class="collapse navbar-collapse" id="navbarNav" > 
+						    <ul class="navbar-nav"  >
+						      <li class="nav-item active">
+						        <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+									</li>
+									
+						      <li class="nav-item">
+						        <a class="nav-link" href="{{ url_for('ourservices') }}">Services</a>
+						      </li>
+						      <li class="nav-item">
+						        <a class="nav-link" href="#">About us</a>
+						      </li>
+						      <!-- <li class="nav-item">
+						        <a class="nav-link " href="{{ url_for('products')}}">Buy a car</a>
+						      </li> -->
+						      <li class="nav-item">
+						        <a class="nav-link" href="{{ url_for('sellerform') }}">Sell a car</a>
+						      </li>
+						      <li class="nav-item">
+						        <a class="nav-link" href="#">FAQs</a>
+						      </li>
+						      <li class="nav-item">
+										{% if session.get('seller'): %}
+										<button type="button" id="y" class="btn btn-outline-info"><a href="{{ url_for('logout') }}">LOGOUT</a></button>
+			
+									
+										{% else: %}
+										<button type="button" id="no" class="btn btn-outline-info" ><a href="{{ url_for('login') }}">LOGIN</a></button>
+										{% endif %}
+								 </li>
+								 {% if session.get('seller'): %}
+			
+										<br><span style="padding-top:5px;"> Welcome {{ session['seller']}}</span>	<span><a href="{{ url_for('sellerdash') }}"><i class="fas fa-user" style="font-size:30px;padding-top:5px;"></i></a></span>
+									
+										{% else: %}
+									
+										{% endif %}
+		
+								</ul>
+
+						  </div>
+						  
+					</nav>
+
+				
+				
+
+
+					<div class="row" id="sm" >
+					<a href="#"><img src="{{ url_for('static',filename='image/fa.png')}}" width="30" ></a>		
+					<a href="#"><img src="{{ url_for('static',filename='image/twit.png')}}" width="30"></a>
+					<a href="#"><img src="{{ url_for('static',filename='image/l.png')}}" width="30" ></a>	
+					<a href="#"><img src="{{ url_for('static',filename='image/y.png')}}" width="30" >	</a>
+				</div>
+		</div>		
+	</div>
+	</div>
+	<div>
+				{% block content %} 
+				
+				
+				{% endblock %}
+				
+	</div>
+	<div class="container-fluid" style="border-color: green 3px solid;">
+		<div class="row" style="background-color: white" id="logo">
+					<div class="col-md-12">
+						<h4 style="margin-top: 30px;">Our Brands</h4>
+						<p class="para"><span style="color:red">-</span>THE AUTOS WE DEAL IN<span style="color:red">-</p>
+					</div>
+					<div class="col-md-11 offset-1" >
+						<img src="{{ url_for('static',filename='image/audi.png')}}" width="150" class="img-fluid">
+						<img src="{{ url_for('static',filename='image/abmw.jpeg')}}" width="150" class="img-fluid">
+						<img src="{{ url_for('static',filename='image/avolk.jpeg')}}" width="270" class="img-fluid">
+						<img src="{{ url_for('static',filename='image/abe.jpg')}}" width="150" class="img-fluid">
+						<img src="{{ url_for('static',filename='image/atoyo.jpeg')}}" width="180" class="img-fluid">
+					</div>
+			</div>
+				<div class="row" style="background-color:#A2B5CD">
+					<div class="col-md-3">
+						<img src="{{ url_for('static',filename='image/logo.png')}}" class="img-fluid" style="display: block;margin: auto;">
+						<p class="para" >Copyright &copy;2019 AUTOSHOP.All Rights Reserved</p> 
+					</div>
+					<div class="col-md-3" style="padding-top: 80px;">
+							<h4>USEFUL LINKS</h4>
+						<p class="para"><a href="about.html">About Us</a></p>
+						<p class="para"><a href="#"> Our Services</a></p>
+						<p class="para"><a href="#"> Information</a></p>
+						<p class="para"><a href="#" >Privacy policy</a></p>
+					</div>
+					<div class="col-md-3" style="padding-top: 80px;">
+							<h4>OUR TERMS</h4>
+						<p class="para"><a href="#"> Support</a></p>
+						<p class="para"><a href="#"> Contact</a></p>
+						<p class="para"><a href="#"> Typography</a></p>
+						<p class="para"><a href="#"> FAQ</a></p>
+					</div>
+					<div class="col-md-3" style="padding-top: 80px;">
+							<h4>SHOWROOM</h4>
+						<p class="para">2.Irewole Street,</p>
+						<p class="para">Opebi,Ikeja</p>
+						<p class="para">Lagos State</p>
+						
+					</div>
+					
+				</div>
+	</div>
+
+ 
+
+<!--jQuery-->
+{%  block scriptss %}
+<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/jquery-3.3.1.js')}}"></script>
+<!--Popper-->
+<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/popper.min.js')}}"></script>
+<!--Bootstrap-->
+<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		
+	</script>
+	<script type="text/javascript" src="{{ url_for('static',filename='javascript/script.js')}}">
+		
+		
+ 
+	</script>
+	{% endblock %}
+
+	
+{% block scriptsss%}
+<script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{% endblock %}
+</body>
+</html>

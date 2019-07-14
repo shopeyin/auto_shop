@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}buyform{% endblock %}
+
+{% block content %} 
+<style>
+        .container{
+            min-height: 500px;
+            background-image: url({{ url_for('static',filename='image/car5.jpg') }});
+            background-size:cover;
+            background-repeat:no-repeat;
+            background-position:center;
+        }
+</style>
+<div class="container" style="min-height: 700px; border-color: red 3px solid;">
+    <div class="row rowlog">
+            <div class="col-md-4">
+                <form action="{{url_for('login')}}" method="POST"  id="signIn" >
+                    <div class="form-group" style="background-color: #00000099;color: white;border-radius: 10px; padding: 20px;">
+                        <div id="result"></div>
+                         {% with message = get_flashed_messages() %}
+                                {%if message: %}
+                                    {% for m in message: %}
+                                     <div class="alert alert-danger">{{m}}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            {% if formdata.email.errors%}
+                                <span style="color:red">{{ formdata.email.errors[0] }}</span>
+                            {% endif %}<br>
+                            {{ formdata.email.label }}
+                            {{ formdata.email(class_='form-control') }}
+                        
+
+                            {% if formdata.password.errors %}
+                                 <span style="color:red">{{ formdata.password.errors[0] }}</span>
+                                {% endif %}<br>
+                            {{ formdata.password.label }}
+                            {{ formdata.password(class_='form-control') }}
+                            {{ formdata.csrf_token }}
+                                {{formdata.submit()}} 
+                        
+                        <p>Not a user?<button type="button" id="btn2">Sign Up</button></p>
+                        <button class="btn btn-primary btn-lg" style="width: 100%"><img src="{{url_for('static',filename='image/fa.png')}}" width="25" style="float: left;padding-top: 2px;" >Sign in with facebook</button> 	
+                    </div>
+
+                </form>
+                
+            </div>
+    </div>
+    
+     <div class="row rowsign">
+            <div class="col-md-4">
+                <form action="{{url_for('formsubmit')}}" method="POST" id="signUp" style="display: none;font-size: 15px; ">
+                    <div class="form-group" style="background-color: rgba(0,0,0, 0.6);color: white;border-radius: 10px;padding: 10px;">
+                        <div id="buyerform"></div>
+                        {{ form.firstname.label }}
+                        {{ form.firstname(class_='form-control', id='fname') }}
+                        
+                        {{ form.lastname.label }}
+                        {{ form.lastname(class_='form-control' ,id='lname') }}
+
+
+                        {{ form.email.label }}
+                        {{ form.email(class_='form-control', id='emai') }}
+                        
+                        {{  form.address.label }}
+                        {{ form.address(class_='form-control', id='add') }}
+
+
+                        {{ form.phonenumber.label }}
+                        {{ form.phonenumber(class_='form-control', id='phone') }}
+  
+
+
+                        {{ form.password.label }}
+                        {{ form.password(class_='form-control', id='pass') }}
+
+
+                        {{ form.confirmpassword.label }}
+                        {{ form.confirmpassword(class_='form-control' ,id='pass2') }}
+
+                        
+                        {{ form.checkbox(id='check') }}Do you agree to  our <a href="#" style="color: white;" data-toggle="modal" data-target="#our">terms and condition</a>
+                        
+                        {{ form.csrf_token }}
+                        {{form.submit()}} 
+                        
+                                                           
+                        <p>Already a user?<button type="button" id="btn3">Sign In</button></p>
+                    </div>	
+                </form>
+                
+            </div>
+    </div> 
+
+    {% endblock %}
+
+/* <label>First name</label>
+                        <input type="text"  class="form-control" id="fname">
+                        <label>Last name</label>
+                        <input type="text"  class="form-control" id="lname">
+                        <label>Address</label>
+                        <input type="text"  class="form-control" id="add">
+                        <label>Phone number</label>
+                        <input type="tel"  class="form-control" id="phone">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="emai">
+                        <label>Password</label>
+                        <input type="password"  class="form-control" id="pass">
+                        <label>Confirm password</label>
+                        <input type="password"  class="form-control" id="pass2">
+                        <input type="checkbox"  id="check" >Do you agree to  our <a href="#" style="color: white;" data-toggle="modal" data-target="#our">terms and condition</a>
+                        <button type="button" style="margin: 10px;" onclick="formValid2(document.getElementById('fname').value.trim(),
+                                                                    document.getElementById('lname').value.trim(),
+                                                                    document.getElementById('add').value.trim(),
+                                                                    document.getElementById('phone').value.trim(),
+                                                                    document.getElementById('emai').value.trim(),
+                                                                    document.getElementById('pass').value.trim(),
+                                                                    document.getElementById('pass2').value.trim(),
+                                                                    document.getElementById('check').value,event)">Submit</button>
+                                                                    
+                                                                    
+                        <p>Already a user?<button type="button" id="btn3">Sign In</button></p> */

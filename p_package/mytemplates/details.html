@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1 style="text-align:center">Vehicle Details</h1>
+
+<div class="container" style="border: 1px solid;display: flex;justify-content: space-around;">
+        <div class="row">
+                        {% for i in more: %}
+                <div class="col-md-12">
+                 <img src= "{{url_for('download_file' , filename=i.product_image)}}" width="500" class="img-fluid">
+                </div>
+        </div>
+        <div class="row">
+                <table class="table table-hover" method =  'POST'enctype = "multipart/form-data">
+                        
+                        <tr>
+                                <th>Product brand</th>
+                                <td>{{ i.product_brand}}</td>
+                        </tr>
+                        <tr>
+                                <th>Product model</th>
+                                 <td>{{ i.product_model}}</td>
+                         </tr>
+                         <tr>
+                                <th>Product Year</th>
+                                <td>{{ i.product_year}}</td>
+                         </tr>
+                         <tr>
+                                 <th>Seller name</th>
+                                <td>{{ i.seller_fname }}</td>
+                        </tr>
+                        <tr>
+                                 <th>Seller phone</th>
+                                 <td>{{ i.seller_phone}}</td>
+                        </tr>
+                         <tr>
+                                <th>Seller location</th>
+                                 <td>{{ i.seller_address }}</td>
+                         </tr>
+                         {% endfor %}
+                </table>
+        </div>
+</div>
+
+{% endblock %}
